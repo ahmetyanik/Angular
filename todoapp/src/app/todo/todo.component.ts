@@ -8,15 +8,19 @@ import { Model } from '../model';
 })
 export class TodoComponent {
   displayAll: boolean = false;
+  inputText: string = '';
 
   constructor() {}
 
   model = new Model();
 
-  addItem(value: string) {
-    value !== ''
-      ? this.model.items.push({ description: value, action: false })
-      : alert('Please type a to do!');
+  addItem() {
+    if (this.inputText !== '') {
+      this.model.items.push({ description: this.inputText, action: false });
+      this.inputText = '';
+    } else {
+      alert('Please type a to do!');
+    }
   }
 
   getName() {
@@ -31,7 +35,15 @@ export class TodoComponent {
     return this.model.items.filter((item) => !item.action);
   }
 
-  displayCount(){
-    return this.model.items.filter(i=>i.action).length;
+  displayCount() {
+    return this.model.items.filter((i) => i.action).length;
+  }
+
+  getBtnClasses() {
+    return {
+      disabled: this.inputText.length === 0,
+      'btn-secondary': this.inputText.length === 0,
+      'btn-primary': this.inputText.length > 0,
+    };
   }
 }

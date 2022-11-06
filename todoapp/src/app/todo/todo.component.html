@@ -3,11 +3,8 @@
     <div class="col-5 mx-auto">
       <h3 class="bg-primary text-white p-3">{{ getName() }}'s To Do List</h3>
       <div class="input-group mb-3">
-        <input #txtItem type="text" class="form-control" />
-        <button
-          class="btn btn-outline-primary"
-          (click)="addItem(txtItem.value); txtItem.value = ''"
-        >
+        <input type="text" class="form-control" [(ngModel)]="inputText" />
+        <button class="btn" (click)="addItem()" [class]="getBtnClasses()">
           Add
         </button>
       </div>
@@ -42,33 +39,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of getItems(); let i = index">
+            <tr
+              *ngFor="let item of getItems(); let i = index"
+              [class]="{
+                'bg-success': item.action,
+                'bg-warning': !item.action
+              }"
+            >
               <td>{{ i + 1 }}</td>
               <td>{{ item.description }}</td>
               <td>
-                <!-- *ngIf ile
-              <div *ngIf="item.action">Yes</div>
-              <div *ngIf="!item.action">No</div>
-               -->
-                <!--  <div [ngSwitch]="item.action">
-                  <div *ngSwitchCase="true">Yes</div>
-                  <div *ngSwitchCase="false">No</div>
-                </div> -->
-
-                <!--If else blogu-->
-                <!-- 
-                <div *ngIf="item.action; else noTemplate">Yes</div>
-
-                <ng-template #noTemplate>No</ng-template>
-
-                 -->
-                <!-- If then blogu
-                <div *ngIf="item.action; then noTemplate">This area doesn't be shown with if-then template</div>
-                <ng-template #noTemplate>No</ng-template> -->
-
-                <!-- If then-else blogu-->
-
-                <div *ngIf="item.action; then noTemplate;else yesTemplate">
+                <div *ngIf="item.action; then yesTemplate; else noTemplate">
                   This area doesn't be shown with if-then template
                 </div>
                 <ng-template #noTemplate>No</ng-template>
