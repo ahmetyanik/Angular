@@ -7,18 +7,15 @@ import { Model } from '../model';
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent {
+  displayAll: boolean = false;
+
   constructor() {}
 
   model = new Model();
-  /* 
-  addItem(txtItem: any) {
-    console.log(txtItem.value);
-  }
-   */
 
   addItem(value: string) {
     value !== ''
-      ? this.model.items.push({ description: value, action: 'no' })
+      ? this.model.items.push({ description: value, action: false })
       : alert('Please type a to do!');
   }
 
@@ -27,6 +24,10 @@ export class TodoComponent {
   }
 
   getItems() {
-    return this.model.items;
+    if (this.displayAll) {
+      return this.model.items;
+    }
+
+    return this.model.items.filter((item) => !item.action);
   }
 }
