@@ -6,9 +6,9 @@ export class Model {
   constructor() {
     this.name = 'Ahmet';
     this.items = [
-      { description: 'kahvalti', action: 'yes' },
-      { description: 'spor', action: 'yes' },
-      { description: 'alisveris', action: 'no' },
+      { description: 'kahvalti', action: true },
+      { description: 'spor', action: true },
+      { description: 'alisveris', action: false },
     ];
   }
 }
