@@ -5,10 +5,6 @@ export class Model {
 
   constructor() {
     this.name = 'Ahmet';
-    this.items = [
-      { description: 'kahvalti', action: true },
-      { description: 'spor', action: true },
-      { description: 'alisveris', action: false },
-    ];
+    this.items = [];
   }
 }
