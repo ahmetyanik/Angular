@@ -1,3 +1,4 @@
+import { Model } from './../model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,17 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class TodoComponent {
   constructor() {}
 
-  private name = 'Ahmet';
+  model = new Model();
 
-  // items = ['item 1', 'item 2', 'item 3', 'item 4'];
-
-  items = [
-    { id: 1, description: 'kahvalti', action: 'yes' },
-    { id: 2, description: 'spor', action: 'yes' },
-    { id: 3, description: 'alisveris', action: 'no' },
-  ];
 
   getName() {
-    return this.name;
+    return this.model.name;
+  }
+
+  getItems(){
+    return this.model.items;
   }
 }
