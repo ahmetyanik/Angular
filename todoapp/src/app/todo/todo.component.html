@@ -3,8 +3,13 @@
     <div class="col-5 mx-auto">
       <h3 class="bg-primary text-white p-3">{{ getName() }}'s To Do List</h3>
       <div class="input-group mb-3">
-        <input type="text" class="form-control" />
-        <button class="btn btn-outline-primary">Add</button>
+        <input #txtItem type="text" class="form-control" />
+        <button
+          class="btn btn-outline-primary"
+          (click)="addItem(txtItem.value); txtItem.value=''"
+        >
+          Add
+        </button>
       </div>
       <div class="form-check mb-3">
         <input
@@ -24,10 +29,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of getItems();let i=index">
-            <td>{{i+1}}</td>
-            <td>{{item.description}}</td>
-            <td>{{item.action}}</td>
+          <tr *ngFor="let item of getItems(); let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.action }}</td>
           </tr>
         </tbody>
       </table>
