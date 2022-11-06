@@ -30,4 +30,8 @@ export class TodoComponent {
 
     return this.model.items.filter((item) => !item.action);
   }
+
+  displayCount(){
+    return this.model.items.filter(i=>i.action).length;
+  }
 }
