@@ -1,0 +1,45 @@
+<div class="container d-flex flex-column align-items-center">
+  <div class="text-center bg-primary text-light p-3 m-2">
+    {{ name }}'s Todo List
+  </div>
+  <input
+    type="text"
+    [(ngModel)]="inputText"
+    value=""
+    (keyup.enter)="addTodo(); inputText = ''"
+  />
+  <button class="btn btn-success m-2" (click)="addTodo(); inputText = ''">
+    Add Todo
+  </button>
+
+  <div>{{ getTodos().length }} görev tamamlandi.</div>
+
+  <div *ngIf="todos.length > 0; then showTable; else alertText"></div>
+
+  <ng-template #showTable>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Todo</th>
+          <th>Action</th>
+          <th>Change Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of todos; let i = index" [class]="{'bg-primary':item.action,'bg-warning':!item.action}">
+          <th>{{ i + 1 }}</th>
+          <td>{{ item.description }}</td>
+          <td>{{ item.action }}</td>
+          <td>
+            <input [(ngModel)]="item.action" type="checkbox" name="" id="" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+
+  <ng-template #alertText>
+    <div class="alert alert-warning">Henüz görev bulunmamaktadir</div>
+  </ng-template>
+</div>
