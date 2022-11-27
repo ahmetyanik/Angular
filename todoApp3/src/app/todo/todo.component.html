@@ -14,6 +14,11 @@
 
   <div>{{ getTodos().length }} görev tamamlandi.</div>
 
+  <div>
+    <input #showAll type="checkbox" name="" id="">
+    <label for="showAll">Show All Todos</label>
+  </div>
+
   <div *ngIf="todos.length > 0; then showTable; else alertText"></div>
 
   <ng-template #showTable>
