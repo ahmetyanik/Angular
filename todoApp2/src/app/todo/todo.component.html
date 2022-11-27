@@ -7,11 +7,13 @@
           #txtItem
           type="text"
           class="form-control"
-          (keyup.enter)="addItem(txtItem.value)"
+          (keyup.enter)="addItem()"
+          [(ngModel)]="inputText"
         />
         <button
-          class="btn btn-outline-primary"
-          (click)="addItem(txtItem.value); txtItem.value = ''"
+          class="btn"
+          (click)="addItem(); txtItem.value = ''"
+          [class]="getBtnClasses()"
         >
           ADD
         </button>
@@ -48,7 +50,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of getItems(); let i = index">
+            <tr
+              *ngFor="let item of getItems(); let i = index"
+              [class]="{
+                'bg-primary': item.action,
+                'bg-warning': !item.action
+              }"
+            >
               <td>{{ i + 1 }}</td>
               <td>{{ item.description }}</td>
 
@@ -60,6 +68,7 @@
               <td>
                 <input
                   type="checkbox"
+                  (change)="onActionChanged(item)"
                   [(ngModel)]="item.action"
                   name=""
                   id=""
@@ -72,3 +81,5 @@
     </div>
   </div>
 </div>
+
+
