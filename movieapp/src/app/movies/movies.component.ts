@@ -8,11 +8,10 @@ import { Movie } from '../models/movie';
   styleUrls: ['./movies.component.css'],
 })
 export class MoviesComponent implements OnInit {
-  title = "Film Listesi"
-  movies:Movie[];
-  popularMovies:Movie[];
-  movieRepository:MovieRepository;
- 
+  title = 'Film Listesi';
+  movies: Movie[];
+  popularMovies: Movie[];
+  movieRepository: MovieRepository;
 
   constructor() {
     this.movieRepository = new MovieRepository();
@@ -21,5 +20,4 @@ export class MoviesComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
 }

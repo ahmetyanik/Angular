@@ -5,8 +5,7 @@
   </div>
 
   <ngTemplate [ngTemplateOutlet]="movieList1"> </ngTemplate>
-  <ngTemplate [ngTemplateOutlet]="movieList2" [ngTemplateOutletContext]="{yeniFilmler:popularMovies}"> </ngTemplate>
-  
+ 
   
 </div>
 
@@ -27,9 +26,12 @@
       </div>
       <div class="col-md-9">
         <div class="card-body">
-          <h2 class="card-title">{{ item.title }}</h2>
+          <h2 class="card-title">{{ item.title | uppercase  }}</h2>
           <p class="card-text">
-            {{ item.description }}
+            {{ item.description | summary: 50}}
+          </p>
+          <p class="card-text">
+            {{ item.datePublished | date:'fullDate' }}
           </p>
           <button class="btn btn-sm btn-outline-primary">Details</button>
         </div>
@@ -38,26 +40,8 @@
   </div>
 </ng-template>
 
-<ng-template #movieList2 let-populerFilmler="yeniFilmler">
 
-  <h2>Popular Movies</h2>
 
-  <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
-
-    <div class="col" *ngFor="let item of populerFilmler">
-
-      
-      <div class="card h-100">
-        <img src="/assets/img/{{item.imageUrl}}" alt="" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title">{{item.title}}</h5>
-          <p class="card-text">{{item.description}}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</ng-template>
 
 
 
