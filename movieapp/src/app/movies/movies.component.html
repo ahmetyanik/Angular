@@ -1,11 +1,17 @@
 <div *ngIf="movies.length > 0; else no_movies">
   <h1 *ngIf="movies.length > 0">{{ title }}</h1>
   <div *ngIf="movies.length > 0" class="alert alert-success">
-    {{ movies.length }} adet film bulundu.
+    {{ FilteredMovies.length }} adet film bulundu.
   </div>
 
   <div class="mb-3">
-    <input class="form-control" type="text" [(ngModel)]="filterText" />
+    <input
+      class="form-control"
+      type="text"
+      [(ngModel)]="filterText"
+      placeholder="Search..."
+      (ngModelChange)="onInputChange()"
+    />
 
     <small *ngIf="filterText.length > 0">Aranan Kelime: {{ filterText }}</small>
   </div>
@@ -14,7 +20,7 @@
 </div>
 
 <ng-template #movieList1>
-  <div class="card mb-3" *ngFor="let item of movies | movieFilter:filterText">
+  <div class="card mb-3" *ngFor="let item of FilteredMovies">
     <div class="row">
       <div class="col-md-3">
         <img
@@ -27,12 +33,16 @@
         <div class="card-body">
           <h2 class="card-title">{{ item.title | uppercase }}</h2>
           <p class="card-text">
-            {{ item.description | summary: 50 }}
+            {{ item.description | summary : 50 }}
           </p>
           <p class="card-text">
-            {{ item.datePublished | date: "fullDate" }}
+            {{ item.datePublished | date : "fullDate" }}
           </p>
-          <button class="btn btn-sm btn-outline-primary">Details</button>
+
+          <div>
+            <button class="btn btn-sm btn-outline-primary">Details</button>
+            <button (click)="addToList($event,item)" class="btn btn-sm btn-primary ms-1">Listeye Ekle</button>
+          </div>
         </div>
       </div>
     </div>
